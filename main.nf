@@ -117,12 +117,14 @@ process bcl2fastq  {
     lane_split = params.lane_splitting ? "" : "--no-lane-splitting"
 
     """
+    aws s3 cp s3:/${ch_runDir} genomics-output/input/iseq-DI/ --recursive
+    
     bcl2fastq \\
-        --runfolder-dir s3:/${ch_runDir} \\
+        --runfolder-dir genomics-output/input/iseq-DI/ \\
         --output-dir . \\
         --sample-sheet ${sheet} \\
-        --interop-dir s3:${ch_runDir}/InterOp \\
-        --input-dir s3:${ch_runDir}/Data/Intensities/BaseCalls \\
+        --interop-dir genomics-output/input/iseq-DI/InterOp \\
+        --input-dir genomics-output/input/iseq-DI/Data/Intensities/BaseCalls \\
         --stats-dir ./Stats \\
         --reports-dir ./Reports \\
         $lane_split
