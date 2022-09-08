@@ -121,8 +121,8 @@ process bcl2fastq  {
         --runfolder-dir s3:/${ch_runDir} \\
         --output-dir . \\
         --sample-sheet ${sheet} \\
-        --interop-dir s3:/${ch_runDir}/InterOp \\
-        --input-dir s3:/${ch_runDir}/Data/Intensities/BaseCalls \\
+        --interop-dir s3:${ch_runDir}/InterOp \\
+        --input-dir s3:${ch_runDir}/Data/Intensities/BaseCalls \\
         --stats-dir ./Stats \\
         --reports-dir ./Reports \\
         $lane_split
